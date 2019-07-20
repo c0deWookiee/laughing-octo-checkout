@@ -1,0 +1,11 @@
+{
+  "name": "multi_step_checkout",
+  "version": "1.0.0",
+  "description": "multi step checkout process just like online purchases",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
