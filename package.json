@@ -18,12 +18,14 @@
     "react-hot-loader": "^4.12.10"
   },
   "devDependencies": {
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.6",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
   }
 }
