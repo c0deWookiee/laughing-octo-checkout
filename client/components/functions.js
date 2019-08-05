@@ -12,6 +12,7 @@ const handleSubmit = function(e, stateName) {
   );
 };
 const postData = function(url, data = this.state) {
+  console.log("pos", data);
   return fetch(url, {
     method: "POST",
     headers: {
@@ -21,6 +22,8 @@ const postData = function(url, data = this.state) {
   });
 };
 const patchData = function(url, data = this.state) {
+  data.orderID = this.props.orderID;
+  data.Form = this.props.form;
   return fetch(url, {
     method: "PATCH",
     headers: {
@@ -30,10 +33,11 @@ const patchData = function(url, data = this.state) {
   });
 };
 
-const handleClick = function(Form) {
+const handleClick = function(Form = this.props.form, orderID) {
   this.setState(
     () => {
       let output = {};
+      if (orderID) output.orderID = orderID;
       output[Form] = true;
       return output;
     },
@@ -41,4 +45,8 @@ const handleClick = function(Form) {
   );
 };
 
-module.exports = { handleSubmit, handleClick, postData, patchData };
+const orderID = () => {
+  return Math.random() * 10000000000000000;
+};
+
+module.exports = { handleSubmit, handleClick, postData, patchData, orderID };

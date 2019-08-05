@@ -3,12 +3,13 @@ const Checkout = require("../db/schema.js");
 
 module.exports = {
   post: (req, res) => {
-    const { Name, Email, Password } = req.body;
+    const { Name, Email, Password, orderID } = req.body;
     const octoCheckout = new Checkout({
       Form1: {
         Name,
         Email,
-        Password
+        Password,
+        orderID
       }
     }).save(err => {
       if (err) {
@@ -24,11 +25,10 @@ module.exports = {
   },
 
   patch: (req, res) => {
-    const { Line1, Line2, City, State, Zipcode } = req.body;
-    console.log("this is a patch");
+    console.log("type of req.body.orderid", typeof req.body.orderID);
     Checkout.findOneAndUpdate(
-      { "Form1.name": "test" }, //query
-      { "Form2.line1": "1234 Faith lane" }, //partial update
+      { "Form1.orderID": req.body.orderID }, //query
+      patchParser(req.body), //partial update
       (err, check) => {
         //error first callback
         if (err) console.error(err);
@@ -37,3 +37,15 @@ module.exports = {
     );
   }
 };
+
+function patchParser(body) {
+  //collect what the form is
+  const Form = body.Form;
+  const output = {};
+  for (let key in body) {
+    if (key === "orderID") continue; // no need to include order id anymore
+    output[`${Form}.${key}`] = body[key];
+  }
+  console.log(output);
+  return output;
+}

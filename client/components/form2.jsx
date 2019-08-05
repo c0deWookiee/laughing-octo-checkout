@@ -7,11 +7,12 @@ export default class form2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      line1: "",
-      line2: "",
-      city: "",
-      state: "",
-      zipCode: ""
+      Line1: "",
+      Line2: "",
+      City: "",
+      State: "",
+      ZipCode: "",
+      PhoneNumber: ""
     };
     this.handleSubmit = handleSubmit.bind(this);
     this.patchData = patchData.bind(this);
@@ -22,16 +23,17 @@ export default class form2 extends Component {
       <div>
         hello you must create an account to create
         <form>
-          <InputBar title="line1" handleSubmit={this.handleSubmit} />
-          <InputBar title="line2" handleSubmit={this.handleSubmit} />
-          <InputBar title="city" handleSubmit={this.handleSubmit} />
-          <InputBar title="state" handleSubmit={this.handleSubmit} />
-          <InputBar title="zipCode" handleSubmit={this.handleSubmit} />
+          <InputBar title="Line1" handleSubmit={this.handleSubmit} />
+          <InputBar title="Line2" handleSubmit={this.handleSubmit} />
+          <InputBar title="City" handleSubmit={this.handleSubmit} />
+          <InputBar title="State" handleSubmit={this.handleSubmit} />
+          <InputBar title="Zip Code" handleSubmit={this.handleSubmit} />
+          <InputBar title="Phone Number" handleSubmit={this.handleSubmit} />
         </form>
         <button
           onClick={() => {
-            this.props.handleClick("Form2");
-            patchData("/api/db");
+            this.props.handleClick(this.props.form);
+            this.patchData("/api/db");
           }}
         >
           Next page

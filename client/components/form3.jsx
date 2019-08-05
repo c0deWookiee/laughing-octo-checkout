@@ -1,18 +1,19 @@
 //F3 collects credit card #, expiry date, CVV, and billing zip code.
 import InputBar from "./inputBar.jsx";
-import { handleSubmit } from "./functions.js";
+import { handleSubmit, patchData } from "./functions.js";
 import React, { Component } from "react";
 
 export default class form3 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      creditCardNumber: "",
-      expiryDate: "",
+      CreditCardNumber: "",
+      ExpiryDate: "",
       CVV: "",
-      zipCode: ""
+      ZipCode: ""
     };
     this.handleSubmit = handleSubmit.bind(this);
+    this.patchData = patchData.bind(this);
   }
 
   render() {
@@ -20,12 +21,19 @@ export default class form3 extends Component {
       <div>
         hello you must create an account to create
         <form>
-          <InputBar title="creditCardNumber" handleSubmit={this.handleSubmit} />
-          <InputBar title="expiryDate" handleSubmit={this.handleSubmit} />
+          <InputBar title="CreditCardNumber" handleSubmit={this.handleSubmit} />
+          <InputBar title="ExpiryDate" handleSubmit={this.handleSubmit} />
           <InputBar title="CVV" handleSubmit={this.handleSubmit} />
-          <InputBar title="zipCode" handleSubmit={this.handleSubmit} />
+          <InputBar title="ZipCode" handleSubmit={this.handleSubmit} />
         </form>
-        <button>Next page</button>
+        <button
+          onClick={() => {
+            this.props.handleClick(this.props.form);
+            this.patchData("/api/db");
+          }}
+        >
+          Next page
+        </button>
       </div>
     );
   }

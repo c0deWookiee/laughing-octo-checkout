@@ -4,7 +4,8 @@ const octoSchema = new mongoose.Schema({
   Form1: {
     Name: String,
     Email: String,
-    Password: String
+    Password: String,
+    orderID: Number
   },
 
   Form2: {
@@ -16,10 +17,10 @@ const octoSchema = new mongoose.Schema({
     PhoneNumber: Number
   },
   Form3: {
-    Credit: Number,
-    Exp: Number,
+    CreditCardNumber: Number,
+    ExpiryDate: Number,
     CVV: Number,
-    Billing: Number
+    ZipCode: Number
   }
 });
 
