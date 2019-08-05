@@ -2,25 +2,27 @@ const mongoose = require("mongoose");
 
 const octoSchema = new mongoose.Schema({
   Form1: {
-    name: String,
-    email: String,
-    password: String
+    Name: String,
+    Email: String,
+    Password: String
   },
 
   Form2: {
-    line1: String,
-    line2: String,
-    city: String,
-    state: String,
-    zipcode: Number,
-    phoneNumber: Number
+    Line1: String,
+    Line2: String,
+    City: String,
+    State: String,
+    Zipcode: Number,
+    PhoneNumber: Number
   },
   Form3: {
-    credit: Number,
-    exp: Number,
-    cvv: Number,
-    billing: Number
+    Credit: Number,
+    Exp: Number,
+    CVV: Number,
+    Billing: Number
   }
 });
 
-module.exports = octoSchema;
+const Checkout = mongoose.model("checkout", octoSchema);
+
+module.exports = Checkout;

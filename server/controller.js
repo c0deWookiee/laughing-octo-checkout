@@ -1,39 +1,21 @@
 const mongoose = require("mongoose");
-const schema = require("../db/schema.js");
+const Checkout = require("../db/schema.js");
 
 module.exports = {
   post: (req, res) => {
-    console.log("this is a post");
-    const Checkout = mongoose.model("checkout", schema);
+    const { Name, Email, Password } = req.body;
     const octoCheckout = new Checkout({
       Form1: {
-        name: "daniel",
-        email: "danie;",
-        password: "dan"
-      },
-
-      Form2: {
-        line1: "dan",
-        line2: "hi",
-        city: "hi",
-        state: "hi",
-        zipcode: 11,
-        phoneNumber: 11
-      },
-      Form3: {
-        credit: 11,
-        exp: 11,
-        cvv: 11,
-        billing: 11
+        Name,
+        Email,
+        Password
       }
-    });
-    octoCheckout.markModified("Form1");
-    octoCheckout.save(err => {
+    }).save(err => {
       if (err) {
         console.error(err);
         res.send("there was an error saving your checkout");
       }
-      res.send("db saved");
+      res.send({ message: "db saved" });
     });
   },
   get: (req, res) => {
@@ -41,7 +23,17 @@ module.exports = {
     res.send("you made a get");
   },
 
-  put: (req, res) => {
-    console.log("this is a put");
+  patch: (req, res) => {
+    const { Line1, Line2, City, State, Zipcode } = req.body;
+    console.log("this is a patch");
+    Checkout.findOneAndUpdate(
+      { "Form1.name": "test" }, //query
+      { "Form2.line1": "1234 Faith lane" }, //partial update
+      (err, check) => {
+        //error first callback
+        if (err) console.error(err);
+        res.send({ message: "update successful" });
+      }
+    );
   }
 };

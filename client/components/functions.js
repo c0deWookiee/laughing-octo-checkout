@@ -11,6 +11,24 @@ const handleSubmit = function(e, stateName) {
     }
   );
 };
+const postData = function(url, data = this.state) {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+};
+const patchData = function(url, data = this.state) {
+  return fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+};
 
 const handleClick = function(Form) {
   this.setState(
@@ -23,4 +41,4 @@ const handleClick = function(Form) {
   );
 };
 
-module.exports = { handleSubmit, handleClick };
+module.exports = { handleSubmit, handleClick, postData, patchData };
