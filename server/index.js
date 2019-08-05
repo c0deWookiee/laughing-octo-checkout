@@ -11,7 +11,7 @@ const port = 1338;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.resolve(__dirname + "/dist")));
+app.use(express.static(path.resolve(__dirname + "/../dist/")));
 //router
 app.use("/api", router);
 

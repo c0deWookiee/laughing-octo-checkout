@@ -1,9 +1,9 @@
 /**collects name and email and password for account creaation */
 import InputBar from "./inputBar.jsx";
-import { handleSubmit } from "./functions.js";
+import { handleSubmit, postData } from "./functions.js";
 import React, { Component } from "react";
 
-export default class form1 extends Component {
+export default class Form1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +12,8 @@ export default class form1 extends Component {
       Password: ""
     };
     this.handleSubmit = handleSubmit.bind(this);
+    this.postData = postData.bind(this);
+    this.handleClick = this.props.handleClick.bind(this);
   }
 
   render() {
@@ -23,7 +25,14 @@ export default class form1 extends Component {
           <InputBar title="Email" handleSubmit={this.handleSubmit} />
           <InputBar title="Password" handleSubmit={this.handleSubmit} />
         </form>
-        <button onClick={() => this.props.handleClick(this.props.form)}>
+        <button
+          onClick={() => {
+            this.handleClick(this.props.form, "POST");
+            postData("/api/db")
+              .then(response => response.json())
+              .then(data => console.log(data));
+          }}
+        >
           Next page
         </button>
       </div>

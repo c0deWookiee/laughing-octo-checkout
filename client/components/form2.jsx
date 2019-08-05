@@ -1,6 +1,6 @@
 /**F2 collects ship to address (line 1, line 2, city, state, zip code) and phone number. */
 import InputBar from "./inputBar.jsx";
-import { handleSubmit } from "./functions.js";
+import { handleSubmit, patchData } from "./functions.js";
 import React, { Component } from "react";
 
 export default class form2 extends Component {
@@ -14,6 +14,7 @@ export default class form2 extends Component {
       zipCode: ""
     };
     this.handleSubmit = handleSubmit.bind(this);
+    this.patchData = patchData.bind(this);
   }
 
   render() {
@@ -27,7 +28,12 @@ export default class form2 extends Component {
           <InputBar title="state" handleSubmit={this.handleSubmit} />
           <InputBar title="zipCode" handleSubmit={this.handleSubmit} />
         </form>
-        <button onClick={() => this.props.handleClick("Form2")}>
+        <button
+          onClick={() => {
+            this.props.handleClick("Form2");
+            patchData("/api/db");
+          }}
+        >
           Next page
         </button>
       </div>
