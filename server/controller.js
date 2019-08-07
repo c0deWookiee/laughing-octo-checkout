@@ -21,7 +21,14 @@ module.exports = {
   },
   get: (req, res) => {
     console.log("this is a get");
-    res.send("you made a get");
+    Checkout.findOne({ "Form1.orderID": req.headers.orderid }, (err, check) => {
+      if (err) return console.error(err);
+
+      console.log(check);
+
+      res.send(check);
+    });
+    // res.send("you made a get");
   },
 
   patch: (req, res) => {
@@ -31,7 +38,7 @@ module.exports = {
       patchParser(req.body), //partial update
       (err, check) => {
         //error first callback
-        if (err) console.error(err);
+        if (err) return console.error(err);
         res.send({ message: "update successful" });
       }
     );

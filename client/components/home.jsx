@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form1 from "./form1.jsx";
 import Form2 from "./form2.jsx";
 import Form3 from "./form3.jsx";
+import FinalForm from "./theFinalForm.jsx";
 import { handleClick } from "./functions";
 
 export default class Home extends Component {
@@ -33,7 +34,7 @@ export default class Home extends Component {
             orderID={this.state.orderID}
           />
         ) : (
-          undefined
+          <FinalForm orderID={this.state.orderID} />
         )}
       </div>
     );
