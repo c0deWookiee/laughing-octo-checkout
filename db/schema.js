@@ -13,7 +13,7 @@ const octoSchema = new mongoose.Schema({
     Line2: String,
     City: String,
     State: String,
-    Zipcode: Number,
+    ZipCode: Number,
     PhoneNumber: Number
   },
   Form3: {

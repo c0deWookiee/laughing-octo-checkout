@@ -19,7 +19,6 @@ export default class form3 extends Component {
   render() {
     return (
       <div>
-        hello you must create an account to create
         <form>
           <InputBar title="CreditCardNumber" handleSubmit={this.handleSubmit} />
           <InputBar title="ExpiryDate" handleSubmit={this.handleSubmit} />
@@ -28,6 +27,9 @@ export default class form3 extends Component {
         </form>
         <button
           onClick={() => {
+            if (Object.values(this.state).includes(""))
+              return alert("You must fill in all fields to proceed");
+
             this.props.handleClick(this.props.form);
             this.patchData("/api/db");
           }}

@@ -27,6 +27,9 @@ export default class Form1 extends Component {
         </form>
         <button
           onClick={() => {
+            if (Object.values(this.state).includes(""))
+              return alert("You must fill in all fields to proceed");
+
             this.props.handleClick(this.props.form, this.state.orderID);
             this.postData("/api/db")
               .then(response => response.json())

@@ -11,7 +11,7 @@
     "build-dev": "webpack -d --watch --mode development",
     "build-prod": "webpack -p --mode production",
     "start": "webpack-dev-server --hot --mode development",
-    "server": "fuser -k 1338/tcp && nodemon ./server/index.js"
+    "server": "nodemon ./server/index.js"
   },
   "dependencies": {
     "react": "^16.8.6",

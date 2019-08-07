@@ -27,11 +27,14 @@ export default class form2 extends Component {
           <InputBar title="Line2" handleSubmit={this.handleSubmit} />
           <InputBar title="City" handleSubmit={this.handleSubmit} />
           <InputBar title="State" handleSubmit={this.handleSubmit} />
-          <InputBar title="Zip Code" handleSubmit={this.handleSubmit} />
-          <InputBar title="Phone Number" handleSubmit={this.handleSubmit} />
+          <InputBar title="ZipCode" handleSubmit={this.handleSubmit} />
+          <InputBar title="PhoneNumber" handleSubmit={this.handleSubmit} />
         </form>
         <button
           onClick={() => {
+            if (Object.values(this.state).includes(""))
+              return alert("You must fill in all fields to proceed");
+
             this.props.handleClick(this.props.form);
             this.patchData("/api/db");
           }}

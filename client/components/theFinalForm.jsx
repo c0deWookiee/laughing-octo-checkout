@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import FinalFormList from "./finalFormList.jsx";
 
 export default class theFinalForm extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ export default class theFinalForm extends Component {
         Line2: null,
         City: null,
         State: null,
-        Zipcode: null,
+        ZipCode: null,
         PhoneNumber: null
       },
       Form3: {
@@ -37,11 +38,25 @@ export default class theFinalForm extends Component {
         }
       });
       const json = await response.json();
+      await this.setState(json);
+      console.log(this.state);
     } catch (err) {
       console.error(err);
     }
   }
   render() {
-    return <div />;
+    return (
+      <div>
+        {Object.keys(this.state).map(form => {
+          if (form.length === 5)
+            return <FinalFormList form={this.state[form]} />;
+          return undefined;
+        })}
+        Is All your information correct?
+        <form action="/">
+          <button>CHECKOUT</button>
+        </form>
+      </div>
+    );
   }
 }
